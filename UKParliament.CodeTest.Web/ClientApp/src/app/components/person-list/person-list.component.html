@@ -1,0 +1,17 @@
+<div>
+  <p *ngFor="let person of persons">
+    {{ person.firstName }} {{ person.lastName }} - {{ person.department.name }} - {{person.dateOfBirth | date: 'dd/MM/yyyy'}}
+  </p>
+</div>
+
+<div>
+  <p *ngFor="let department of departments">
+    {{ department.name }}
+  </p>
+</div>
+
+<button (click)="addPerson()">Add Person</button>
+
+<button (click)="deletePerson()">Delete Person</button>
+
+<button (click)="updatePerson()">Update Person</button>

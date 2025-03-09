@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UKParliament.CodeTest.Data;
+using UKParliament.CodeTest.Data.Repository;
 using UKParliament.CodeTest.Services;
 
 namespace UKParliament.CodeTest.Web;
@@ -16,7 +17,11 @@ public class Program
 
         builder.Services.AddDbContext<PersonManagerContext>(op => op.UseInMemoryDatabase("PersonManager"));
 
+        builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+        builder.Services.AddScoped<IRepository, Repository>();
         builder.Services.AddScoped<IPersonService, PersonService>();
+        builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
         var app = builder.Build();
 

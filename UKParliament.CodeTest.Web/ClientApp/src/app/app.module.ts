@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { PersonListComponent } from './components/person-list/person-list.component';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -14,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
     bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         FormsModule,
         RouterModule.forRoot([
-            { path: '', component: HomeComponent, pathMatch: 'full' }
+            { path: '', component: PersonListComponent, pathMatch: 'full' },
+            { path: 'home', component: HomeComponent, pathMatch: 'full' }
         ])], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
