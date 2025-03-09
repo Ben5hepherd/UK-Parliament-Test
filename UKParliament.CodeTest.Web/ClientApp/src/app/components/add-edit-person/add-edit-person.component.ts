@@ -1,33 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { PersonViewModel } from 'src/app/models/person-view-model';
 import { DepartmentViewModel } from 'src/app/models/department-view-model';
 import { DepartmentService } from 'src/app/services/department.service';
 import { PersonService } from 'src/app/services/person.service';
-import { DropdownModule } from 'primeng/dropdown';
-import { DatePickerModule } from 'primeng/datepicker';
-import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
+import { AddEditPersonModule } from './add-edit-person.module';
 
 @Component({
   selector: 'app-edit-person',
   standalone: true,
-  imports: [
-    CommonModule,
-    DropdownModule,
-    DatePickerModule,
-    ButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [AddEditPersonModule],
   templateUrl: './add-edit-person.component.html',
   styleUrls: ['./add-edit-person.component.scss'],
 })
