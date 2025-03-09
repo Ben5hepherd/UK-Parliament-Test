@@ -26,7 +26,7 @@ import { ButtonModule } from 'primeng/button';
     DatePickerModule,
     ButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './add-edit-person.component.html',
   styleUrls: ['./add-edit-person.component.scss'],
@@ -66,5 +66,5 @@ export abstract class AddEditPersonComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  abstract onSubmit(): void
+  abstract onSubmit(): void;
 }

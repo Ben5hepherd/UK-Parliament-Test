@@ -3,7 +3,7 @@
   <p-button
     (click)="addPerson()"
     label="Add Person"
-    severity="success"
+    severity="contrast"
     [attr.aria-label]="'Add new person'"
   ></p-button>
 </div>
@@ -20,8 +20,8 @@
         <th scope="col" id="lastNameHeader">Last Name</th>
         <th scope="col" id="dobHeader">Date of Birth</th>
         <th scope="col" id="departmentHeader">Department</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-person>
@@ -34,7 +34,7 @@
           <p-button
             (click)="editPerson(person.id)"
             label="Edit"
-            severity="primary"
+            severity="contrast"
             [attr.aria-label]="
               'Edit ' + person.firstName + ' ' + person.lastName
             "
@@ -44,7 +44,7 @@
           <p-button
             (click)="deletePerson(person.id)"
             label="Delete"
-            severity="danger"
+            severity="secondary"
             [attr.aria-label]="
               'Delete ' + person.firstName + ' ' + person.lastName
             "

@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { takeUntil } from 'rxjs';
 import { PersonViewModel } from 'src/app/models/person-view-model';
 import { DropdownModule } from 'primeng/dropdown';

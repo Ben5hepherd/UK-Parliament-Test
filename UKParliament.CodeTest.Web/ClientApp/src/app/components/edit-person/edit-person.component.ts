@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { takeUntil } from 'rxjs';
 import { PersonViewModel } from 'src/app/models/person-view-model';
 import { DropdownModule } from 'primeng/dropdown';
@@ -20,7 +17,7 @@ import { AddEditPersonComponent } from '../add-edit-person/add-edit-person.compo
     DatePickerModule,
     ButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: '../add-edit-person/add-edit-person.component.html',
   styleUrls: ['../add-edit-person/add-edit-person.component.scss'],
@@ -42,7 +39,7 @@ export class EditPersonComponent extends AddEditPersonComponent {
             firstName: person.firstName,
             lastName: person.lastName,
             dateOfBirth: new Date(person.dateOfBirth),
-            department: person.department.id
+            department: person.department.id,
           });
         });
     }
@@ -62,7 +59,7 @@ export class EditPersonComponent extends AddEditPersonComponent {
       dateOfBirth: this.personForm.controls.dateOfBirth.value,
       department: {
         id: this.personForm.controls.department.value,
-        name: ''
+        name: '',
       },
     };
 

@@ -1,4 +1,4 @@
-<h2>{{title}}</h2>
+<h2>{{ title }}</h2>
 
 <div class="card">
   <form class="p-2" [formGroup]="personForm" (ngSubmit)="onSubmit()">
@@ -51,9 +51,11 @@
         <p-datepicker
           formControlName="dateOfBirth"
           id="dateOfBirth"
+          inputId="dateOfBirth"
           dateFormat="dd/mm/yy"
           aria-describedby="dobHelp"
-        ></p-datepicker>
+        >
+        </p-datepicker>
         <small
           id="dobHelp"
           *ngIf="
@@ -92,7 +94,12 @@
       </div>
 
       <!-- Submit Button -->
-      <button pButton label="Submit" type="submit"></button>
+      <p-button
+        label="Submit"
+        type="submit"
+        severity="contrast"
+        [attr.aria-label]="'Submit'"
+      ></p-button>
     </div>
   </form>
 </div>
