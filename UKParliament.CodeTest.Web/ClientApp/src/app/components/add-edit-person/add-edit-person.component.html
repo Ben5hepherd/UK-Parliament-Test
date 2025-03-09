@@ -1,0 +1,98 @@
+<h2>{{title}}</h2>
+
+<div class="card">
+  <form class="p-2" [formGroup]="personForm" (ngSubmit)="onSubmit()">
+    <div class="p-fluid">
+      <!-- First Name -->
+      <div class="p-field">
+        <label for="firstName">First Name</label>
+        <input
+          pInputText
+          id="firstName"
+          formControlName="firstName"
+          aria-describedby="firstNameHelp"
+        />
+        <small
+          id="firstNameHelp"
+          *ngIf="
+            personForm.controls.firstName.invalid &&
+            personForm.controls.firstName.touched
+          "
+          class="p-error"
+        >
+          First Name is required (max length 50)
+        </small>
+      </div>
+
+      <!-- Last Name -->
+      <div class="p-field">
+        <label for="lastName">Last Name</label>
+        <input
+          pInputText
+          id="lastName"
+          formControlName="lastName"
+          aria-describedby="lastNameHelp"
+        />
+        <small
+          id="lastNameHelp"
+          *ngIf="
+            personForm.controls.lastName.invalid &&
+            personForm.controls.lastName.touched
+          "
+          class="p-error"
+        >
+          Last Name is required (max length 50)
+        </small>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="p-field">
+        <label for="dateOfBirth">Date of Birth</label>
+        <p-datepicker
+          formControlName="dateOfBirth"
+          id="dateOfBirth"
+          dateFormat="mm/dd/yy"
+          aria-describedby="dobHelp"
+        ></p-datepicker>
+        <small
+          id="dobHelp"
+          *ngIf="
+            personForm.controls.dateOfBirth.invalid &&
+            personForm.controls.dateOfBirth.touched
+          "
+          class="p-error"
+        >
+          Date of Birth is required
+        </small>
+      </div>
+
+      <!-- Department Dropdown -->
+      <div class="p-field">
+        <label for="department">Department</label>
+        <p-dropdown
+          formControlName="department"
+          [options]="departments"
+          optionLabel="name"
+          optionValue="id"
+          id="department"
+          placeholder="Select Department"
+          aria-describedby="departmentHelp"
+        >
+        </p-dropdown>
+        <small
+          id="departmentHelp"
+          *ngIf="
+            personForm.controls.department.invalid &&
+            personForm.controls.department.touched
+          "
+          class="p-error"
+        >
+          Department is required
+        </small>
+      </div>
+
+      <!-- Submit Button -->
+      <button pButton label="Submit" type="submit"></button>
+    </div>
+  </form>
+</div>

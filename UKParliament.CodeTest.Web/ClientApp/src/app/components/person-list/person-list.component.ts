@@ -5,18 +5,22 @@ import { DepartmentViewModel } from 'src/app/models/department-view-model';
 import { PersonViewModel } from 'src/app/models/person-view-model';
 import { DepartmentService } from 'src/app/services/department.service';
 import { PersonService } from 'src/app/services/person.service';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-person-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule, TableModule],
   templateUrl: './person-list.component.html',
   styleUrl: './person-list.component.scss',
 })
 export class PersonListComponent implements OnInit, OnDestroy {
   constructor(
     private readonly personService: PersonService,
-    private readonly departmentService: DepartmentService
+    private readonly departmentService: DepartmentService,
+    private readonly router: Router
   ) {}
 
   persons: PersonViewModel[] = [];
@@ -43,27 +47,18 @@ export class PersonListComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
+  
   addPerson(): void {
-    let p: PersonViewModel = {
-      firstName: 'John',
-      lastName: 'Doe',
-      dateOfBirth: new Date(1990, 1, 1),
-      department: this.departments[0],
-    };
+    this.router.navigate(['/add']);
+  }
 
-    this.personService.add(p).subscribe((personId) => {
-      this.newPersonId = personId;
+  editPerson(id: number): void {
+    this.router.navigate(['/edit', id]);
+  }
+
+  deletePerson(id: number): void {
+    this.personService.delete(id).pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.persons = this.persons.filter((p) => p.id !== id);
     });
-  }
-
-  updatePerson(): void {
-    this.persons[0].firstName = 'Jane';
-
-    this.personService.update(this.persons[0]).pipe(takeUntil(this.destroy$)).subscribe();
-  }
-
-  deletePerson(): void {
-    this.personService.delete(1).pipe(takeUntil(this.destroy$)).subscribe();
   }
 }
