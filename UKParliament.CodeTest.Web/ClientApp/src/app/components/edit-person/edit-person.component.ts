@@ -41,7 +41,7 @@ export class EditPersonComponent extends AddEditPersonComponent {
           this.personForm.patchValue({
             firstName: person.firstName,
             lastName: person.lastName,
-            dateOfBirth: person.dateOfBirth,
+            dateOfBirth: new Date(person.dateOfBirth),
             department: person.department.id
           });
         });
