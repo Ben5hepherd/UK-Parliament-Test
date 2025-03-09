@@ -1,13 +1,15 @@
-﻿using UKParliament.CodeTest.Data.Entities;
+﻿using FluentValidation;
+using UKParliament.CodeTest.Data.Entities;
 using UKParliament.CodeTest.Data.Repository;
 
 namespace UKParliament.CodeTest.Services;
 
-public class PersonService(IRepository repository) : IPersonService
+public class PersonService(IRepository repository, IValidator<Person> validator) : IPersonService
 {
-    public async Task<Person?> GetPersonById(int id)
+    public async Task<Person> GetPersonById(int id)
     {
-        return await repository.GetById<Person>(id);
+        var person = await repository.GetById<Person>(id);
+        return person ?? throw PersonNotFoundException(id);
     }
 
     public async Task<List<Person>> GetAllPeople()
@@ -17,11 +19,14 @@ public class PersonService(IRepository repository) : IPersonService
 
     public async Task<int> AddPerson(Person person)
     {
+        await validator.ValidateAndThrowAsync(person);
         return await repository.Add(person);
     }
 
     public async Task UpdatePerson(Person person)
     {
+        await validator.ValidateAndThrowAsync(person);
+
         var doesPersonExist = await repository.DoesEntityExist<Person>(person.Id);
 
         if (doesPersonExist)
@@ -30,7 +35,7 @@ public class PersonService(IRepository repository) : IPersonService
         }
         else
         {
-            throw new Exception("Person does not exist");
+            throw PersonNotFoundException(person.Id);
         }
     }
 
@@ -43,7 +48,12 @@ public class PersonService(IRepository repository) : IPersonService
         }
         else
         {
-            throw new Exception("Person does not exist");
+            throw PersonNotFoundException(id);
         }
+    }
+
+    private static KeyNotFoundException PersonNotFoundException(int id)
+    {
+        return new KeyNotFoundException($"Person with ID {id} does not exist");
     }
 }

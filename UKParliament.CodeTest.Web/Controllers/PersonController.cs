@@ -15,12 +15,6 @@ public class PersonController(IPersonService personService, IMapper mapper) : Co
     public async Task<ActionResult<PersonViewModel>> GetById(int id)
     {
         var personEntity = await personService.GetPersonById(id);
-
-        if(personEntity == null)
-        {
-            return NotFound();
-        }
-
         var personViewModel = mapper.Map<PersonViewModel>(personEntity);
         return Ok(personViewModel);
     }
