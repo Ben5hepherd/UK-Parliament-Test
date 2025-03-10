@@ -20,7 +20,6 @@ public class DepartmentServiceTests
     [Fact]
     public async Task GetAllDepartments_ReturnsListOfDepartments()
     {
-        // Arrange
         var departments = new List<Department>
         {
             new() { Id = 1, Name = "HR" },
@@ -29,10 +28,8 @@ public class DepartmentServiceTests
 
         _repositoryMock.Setup(r => r.GetAll<Department>()).ReturnsAsync(departments);
 
-        // Act
         var result = await _service.GetAllDepartments();
 
-        // Assert
         Assert.Equal(2, result.Count);
         Assert.Contains(result, d => d.Name == "HR");
         Assert.Contains(result, d => d.Name == "IT");
@@ -41,13 +38,10 @@ public class DepartmentServiceTests
     [Fact]
     public async Task GetAllDepartments_ReturnsEmptyList_WhenNoDepartmentsExist()
     {
-        // Arrange
         _repositoryMock.Setup(r => r.GetAll<Department>()).ReturnsAsync(new List<Department>());
 
-        // Act
         var result = await _service.GetAllDepartments();
 
-        // Assert
         Assert.Empty(result);
     }
 }

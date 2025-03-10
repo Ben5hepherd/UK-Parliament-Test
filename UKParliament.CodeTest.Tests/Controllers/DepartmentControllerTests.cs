@@ -25,7 +25,6 @@ public class DepartmentControllerTests
     [Fact]
     public async Task GetAll_ReturnsListOfDepartmentViewModels()
     {
-        // Arrange
         var departments = new List<Department>
         {
             new() { Id = 1, Name = "HR" },
@@ -40,10 +39,8 @@ public class DepartmentControllerTests
         _departmentServiceMock.Setup(s => s.GetAllDepartments()).ReturnsAsync(departments);
         _mapperMock.Setup(m => m.Map<List<DepartmentViewModel>>(departments)).Returns(departmentViewModels);
 
-        // Act
         var result = await _controller.GetAll();
 
-        // Assert
         var actionResult = Assert.IsType<OkObjectResult>(result.Result);
         var returnedDepartments = Assert.IsType<List<DepartmentViewModel>>(actionResult.Value);
         Assert.Equal(2, returnedDepartments.Count);
@@ -52,14 +49,11 @@ public class DepartmentControllerTests
     [Fact]
     public async Task GetAll_ReturnsEmptyList_WhenNoDepartmentsExist()
     {
-        // Arrange
         _departmentServiceMock.Setup(s => s.GetAllDepartments()).ReturnsAsync(new List<Department>());
         _mapperMock.Setup(m => m.Map<List<DepartmentViewModel>>(It.IsAny<List<Department>>())).Returns(new List<DepartmentViewModel>());
 
-        // Act
         var result = await _controller.GetAll();
 
-        // Assert
         var actionResult = Assert.IsType<OkObjectResult>(result.Result);
         var returnedDepartments = Assert.IsType<List<DepartmentViewModel>>(actionResult.Value);
         Assert.Empty(returnedDepartments);

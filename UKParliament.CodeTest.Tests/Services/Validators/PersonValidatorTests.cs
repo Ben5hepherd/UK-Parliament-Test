@@ -17,7 +17,6 @@ public class PersonValidatorTests
     [Fact]
     public void Validate_ShouldPass_WhenPersonIsValid()
     {
-        // Arrange
         var person = new Person
         {
             FirstName = "John",
@@ -26,8 +25,8 @@ public class PersonValidatorTests
             DepartmentId = 1
         };
 
-        // Act & Assert
         var result = _validator.TestValidate(person);
+
         result.ShouldNotHaveAnyValidationErrors();
     }
 
@@ -35,7 +34,9 @@ public class PersonValidatorTests
     public void Validate_ShouldFail_WhenFirstNameIsEmpty()
     {
         var person = new Person { FirstName = "", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 };
+        
         var result = _validator.TestValidate(person);
+        
         result.ShouldHaveValidationErrorFor(p => p.FirstName).WithErrorMessage("First Name is required.");
     }
 
@@ -43,7 +44,9 @@ public class PersonValidatorTests
     public void Validate_ShouldFail_WhenLastNameIsEmpty()
     {
         var person = new Person { FirstName = "John", LastName = "", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 };
+        
         var result = _validator.TestValidate(person);
+        
         result.ShouldHaveValidationErrorFor(p => p.LastName).WithErrorMessage("Last Name is required.");
     }
 
@@ -51,7 +54,9 @@ public class PersonValidatorTests
     public void Validate_ShouldFail_WhenDateOfBirthIsInTheFuture()
     {
         var person = new Person { FirstName = "John", LastName = "Doe", DateOfBirth = DateTime.Now.AddDays(1), DepartmentId = 1 };
+        
         var result = _validator.TestValidate(person);
+        
         result.ShouldHaveValidationErrorFor(p => p.DateOfBirth).WithErrorMessage("Date of Birth must be in the past.");
     }
 
@@ -59,7 +64,9 @@ public class PersonValidatorTests
     public void Validate_ShouldFail_WhenDepartmentIdIsZeroOrNegative()
     {
         var person = new Person { FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 0 };
+        
         var result = _validator.TestValidate(person);
+        
         result.ShouldHaveValidationErrorFor(p => p.DepartmentId).WithErrorMessage("Department Id is required and must be greater than zero.");
     }
 }
