@@ -2,18 +2,12 @@
 
 namespace UKParliament.CodeTest.Data.Repository;
 
-public interface IRepository
+public interface IRepository<T> where T : notnull, Entity
 {
-    Task<T?> GetById<T>(int id) where T : Entity;
-    Task<List<T>> GetAll<T>() where T : Entity;
-
-
-    Task<int> Add<T>(T entity) where T : Entity;
-
-
-    Task<bool> DoesEntityExist<T>(int id) where T : Entity;
-    Task Update<T>(T entity) where T : Entity;
-
-
-    Task Delete<T>(T entity) where T : Entity;
+    Task<T?> GetById(int id);
+    Task<List<T>> GetAll();
+    Task<int> Add(T entity);
+    Task<bool> DoesEntityExist(int id);
+    Task Update(T entity);
+    Task Delete(T entity);
 }

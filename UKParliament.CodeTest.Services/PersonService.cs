@@ -4,17 +4,17 @@ using UKParliament.CodeTest.Data.Repository;
 
 namespace UKParliament.CodeTest.Services;
 
-public class PersonService(IRepository repository, IValidator<Person> validator) : IPersonService
+public class PersonService(IRepository<Person> repository, IValidator<Person> validator) : IPersonService
 {
     public async Task<Person> GetPersonById(int id)
     {
-        var person = await repository.GetById<Person>(id);
+        var person = await repository.GetById(id);
         return person ?? throw PersonNotFoundException(id);
     }
 
     public async Task<List<Person>> GetAllPeople()
     {
-        return await repository.GetAll<Person>();
+        return await repository.GetAll();
     }
 
     public async Task<int> AddPerson(Person person)
@@ -27,7 +27,7 @@ public class PersonService(IRepository repository, IValidator<Person> validator)
     {
         await validator.ValidateAndThrowAsync(person);
 
-        var doesPersonExist = await repository.DoesEntityExist<Person>(person.Id);
+        var doesPersonExist = await repository.DoesEntityExist(person.Id);
 
         if (doesPersonExist)
         {
@@ -41,7 +41,7 @@ public class PersonService(IRepository repository, IValidator<Person> validator)
 
     public async Task DeletePerson(int id)
     {
-        var personEntity = await repository.GetById<Person>(id);
+        var personEntity = await repository.GetById(id);
         if (personEntity != null)
         {
             await repository.Delete(personEntity);

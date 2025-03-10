@@ -8,12 +8,12 @@ namespace UKParliament.CodeTest.Tests.Services;
 
 public class DepartmentServiceTests
 {
-    private readonly Mock<IRepository> _repositoryMock;
+    private readonly Mock<IRepository<Department>> _repositoryMock;
     private readonly DepartmentService _service;
 
     public DepartmentServiceTests()
     {
-        _repositoryMock = new Mock<IRepository>();
+        _repositoryMock = new Mock<IRepository<Department>>();
         _service = new DepartmentService(_repositoryMock.Object);
     }
 
@@ -26,7 +26,7 @@ public class DepartmentServiceTests
             new() { Id = 2, Name = "IT" }
         };
 
-        _repositoryMock.Setup(r => r.GetAll<Department>()).ReturnsAsync(departments);
+        _repositoryMock.Setup(r => r.GetAll()).ReturnsAsync(departments);
 
         var result = await _service.GetAllDepartments();
 
@@ -38,7 +38,7 @@ public class DepartmentServiceTests
     [Fact]
     public async Task GetAllDepartments_ReturnsEmptyList_WhenNoDepartmentsExist()
     {
-        _repositoryMock.Setup(r => r.GetAll<Department>()).ReturnsAsync(new List<Department>());
+        _repositoryMock.Setup(r => r.GetAll()).ReturnsAsync(new List<Department>());
 
         var result = await _service.GetAllDepartments();
 

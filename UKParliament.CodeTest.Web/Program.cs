@@ -22,7 +22,7 @@ public class Program
 
         builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-        builder.Services.AddScoped<IRepository, Repository>();
+        builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         builder.Services.AddScoped<IPersonService, PersonService>();
         builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
