@@ -24,7 +24,7 @@ public class PersonServiceTests
     [Fact]
     public async Task GetPersonById_ReturnsPerson_WhenPersonExists()
     {
-        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 };
+        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1, EmailAddress = "test@test.com" };
         _repositoryMock.Setup(r => r.GetById(1)).ReturnsAsync(person);
 
         var result = await _service.GetPersonById(1);
@@ -42,7 +42,7 @@ public class PersonServiceTests
     [Fact]
     public async Task GetAllPeople_ReturnsListOfPeople()
     {
-        var people = new List<Person> { new() { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 } };
+        var people = new List<Person> { new() { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 , EmailAddress = "test@test.com" } };
         _repositoryMock.Setup(r => r.GetAll()).ReturnsAsync(people);
 
         var result = await _service.GetAllPeople();
@@ -52,7 +52,7 @@ public class PersonServiceTests
     [Fact]
     public async Task AddPerson_ReturnsNewPersonId_WhenValid()
     {
-        var person = new Person { FirstName = "Jane", LastName = "Doe", DateOfBirth = new DateTime(1995, 5, 5), DepartmentId = 1 };
+        var person = new Person { FirstName = "Jane", LastName = "Doe", DateOfBirth = new DateTime(1995, 5, 5), DepartmentId = 1 , EmailAddress = "test@test.com" };
 
         _validatorMock
             .Setup(v => v.ValidateAsync(person, default))
@@ -69,7 +69,7 @@ public class PersonServiceTests
     [Fact]
     public async Task UpdatePerson_UpdatesPerson_WhenPersonExists()
     {
-        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 };
+        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 , EmailAddress = "test@test.com" };
 
         _validatorMock
             .Setup(v => v.ValidateAsync(person, default))
@@ -91,7 +91,7 @@ public class PersonServiceTests
     [Fact]
     public async Task UpdatePerson_ThrowsKeyNotFoundException_WhenPersonDoesNotExist()
     {
-        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 };
+        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 , EmailAddress = "test@test.com" };
 
         _validatorMock
             .Setup(v => v.ValidateAsync(person, default))
@@ -107,7 +107,7 @@ public class PersonServiceTests
     [Fact]
     public async Task DeletePerson_DeletesPerson_WhenPersonExists()
     {
-        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 };
+        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1 , EmailAddress = "test@test.com" };
         _repositoryMock.Setup(r => r.GetById(1)).ReturnsAsync(person);
         _repositoryMock.Setup(r => r.Delete(person)).Returns(Task.CompletedTask);
 

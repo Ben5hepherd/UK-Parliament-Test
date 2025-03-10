@@ -62,6 +62,7 @@ describe('EditPersonComponent', () => {
       id: 1,
       firstName: 'John',
       lastName: 'Doe',
+      emailAddress: 'test@test.com',
       dateOfBirth: new Date('1990-01-01'),
       department: { id: 1, name: 'HR' },
     };
@@ -81,6 +82,7 @@ describe('EditPersonComponent', () => {
       firstName: 'Jane',
       lastName: 'Doe',
       dateOfBirth: new Date('1995-05-05'),
+      emailAddress: 'test@test.com',
       department: 2,
     });
 
@@ -93,6 +95,7 @@ describe('EditPersonComponent', () => {
       id: 1,
       firstName: 'Jane',
       lastName: 'Doe',
+      emailAddress: 'test@test.com',
       dateOfBirth: new Date('1995-05-05'),
       department: { id: 2, name: '' },
     };
@@ -105,8 +108,9 @@ describe('EditPersonComponent', () => {
     component.personForm.setValue({
       firstName: '',
       lastName: '',
-      dateOfBirth: '',
-      department: '',
+      emailAddress: '',
+      dateOfBirth: null,
+      department: null,
     });
 
     component.onSubmit();

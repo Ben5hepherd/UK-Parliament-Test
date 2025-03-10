@@ -25,8 +25,8 @@ public class PersonControllerTests
     [Fact]
     public async Task GetById_ReturnsPersonViewModel_WhenPersonExists()
     {
-        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1, Department = new Department { Id = 1, Name = "IT" } };
-        var viewModel = new PersonViewModel { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), Department = new DepartmentViewModel { Id = 1, Name = "IT" } };
+        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1, Department = new Department { Id = 1, Name = "IT" }, EmailAddress = "test@test.com" };
+        var viewModel = new PersonViewModel { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), Department = new DepartmentViewModel { Id = 1, Name = "IT" }, EmailAddress = "test@test.com" };
 
         _personServiceMock.Setup(s => s.GetPersonById(1)).ReturnsAsync(person);
         _mapperMock.Setup(m => m.Map<PersonViewModel>(person)).Returns(viewModel);
@@ -40,8 +40,8 @@ public class PersonControllerTests
     [Fact]
     public async Task GetAll_ReturnsListOfPersons()
     {
-        var people = new List<Person> { new() { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1, Department = new Department { Id = 1, Name = "IT" } } };
-        var viewModels = new List<PersonViewModel> { new() { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), Department = new DepartmentViewModel { Id = 1, Name = "IT" } } };
+        var people = new List<Person> { new() { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1, Department = new Department { Id = 1, Name = "IT" }, EmailAddress = "test@test.com" } };
+        var viewModels = new List<PersonViewModel> { new() { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), Department = new DepartmentViewModel { Id = 1, Name = "IT" }, EmailAddress = "test@test.com" } };
 
         _personServiceMock.Setup(s => s.GetAllPeople()).ReturnsAsync(people);
         _mapperMock.Setup(m => m.Map<List<PersonViewModel>>(people)).Returns(viewModels);
@@ -55,8 +55,8 @@ public class PersonControllerTests
     [Fact]
     public async Task Add_ReturnsNewPersonId()
     {
-        var viewModel = new PersonViewModel { FirstName = "Jane", LastName = "Doe", DateOfBirth = new DateTime(1995, 5, 5), Department = new DepartmentViewModel { Id = 1, Name = "HR" } };
-        var person = new Person { FirstName = "Jane", LastName = "Doe", DateOfBirth = new DateTime(1995, 5, 5), DepartmentId = 1, Department = new Department { Id = 1, Name = "HR" } };
+        var viewModel = new PersonViewModel { FirstName = "Jane", LastName = "Doe", DateOfBirth = new DateTime(1995, 5, 5), Department = new DepartmentViewModel { Id = 1, Name = "HR" }, EmailAddress = "test@test.com" };
+        var person = new Person { FirstName = "Jane", LastName = "Doe", DateOfBirth = new DateTime(1995, 5, 5), DepartmentId = 1, Department = new Department { Id = 1, Name = "HR" }, EmailAddress = "test@test.com" };
 
         _mapperMock.Setup(m => m.Map<Person>(viewModel)).Returns(person);
         _personServiceMock.Setup(s => s.AddPerson(person)).ReturnsAsync(1);
@@ -69,8 +69,8 @@ public class PersonControllerTests
     [Fact]
     public async Task Update_ReturnsOk()
     {
-        var viewModel = new PersonViewModel { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), Department = new DepartmentViewModel { Id = 1, Name = "IT" } };
-        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1, Department = new Department { Id = 1, Name = "IT" } };
+        var viewModel = new PersonViewModel { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), Department = new DepartmentViewModel { Id = 1, Name = "IT" }, EmailAddress = "test@test.com" };
+        var person = new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1990, 1, 1), DepartmentId = 1, Department = new Department { Id = 1, Name = "IT" }, EmailAddress = "test@test.com" };
 
         _mapperMock.Setup(m => m.Map<Person>(viewModel)).Returns(person);
         _personServiceMock.Setup(s => s.UpdatePerson(person)).Returns(Task.CompletedTask);

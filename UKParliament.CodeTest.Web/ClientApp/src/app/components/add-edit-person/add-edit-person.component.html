@@ -20,7 +20,7 @@
           "
           class="p-error"
         >
-          First Name is required (max length 50)
+          First Name is required
         </small>
       </div>
 
@@ -41,7 +41,28 @@
           "
           class="p-error"
         >
-          Last Name is required (max length 50)
+          Last Name is required
+        </small>
+      </div>
+
+      <!-- Email Addresss -->
+      <div class="p-field">
+        <label for="emailAddress">Email Address</label>
+        <input
+          pInputText
+          id="emailAddress"
+          formControlName="emailAddress"
+          aria-describedby="emailAddressHelp"
+        />
+        <small
+          id="emailAddressHelp"
+          *ngIf="
+            personForm.controls.emailAddress.invalid &&
+            personForm.controls.emailAddress.touched
+          "
+          class="p-error"
+        >
+          A valid email address is required
         </small>
       </div>
 

@@ -44,6 +44,7 @@ describe('PersonListComponent', () => {
         firstName: 'John',
         lastName: 'Doe',
         dateOfBirth: new Date(),
+        emailAddress: 'test@test.com',
         department: { id: 1, name: 'HR' },
       },
     ];
@@ -73,6 +74,7 @@ describe('PersonListComponent', () => {
         id: 1,
         firstName: 'John',
         lastName: 'Doe',
+        emailAddress: 'test@test.com',
         dateOfBirth: new Date(),
         department: { id: 1, name: 'HR' },
       },
@@ -80,6 +82,7 @@ describe('PersonListComponent', () => {
         id: 2,
         firstName: 'Jane',
         lastName: 'Smith',
+        emailAddress: 'test2@test.com',
         dateOfBirth: new Date(),
         department: { id: 2, name: 'IT' },
       },

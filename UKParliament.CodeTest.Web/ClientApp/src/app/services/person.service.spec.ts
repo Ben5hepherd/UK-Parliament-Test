@@ -43,6 +43,7 @@ describe('PersonService', () => {
         id: 1,
         firstName: 'John',
         lastName: 'Doe',
+        emailAddress: 'test@test.com',
         dateOfBirth: new Date('1990-01-01'),
         department: { id: 1, name: 'IT' } as DepartmentViewModel,
       };
@@ -65,12 +66,14 @@ describe('PersonService', () => {
           firstName: 'John',
           lastName: 'Doe',
           dateOfBirth: new Date('1990-01-01'),
+          emailAddress: 'test@test.com',
           department: { id: 1, name: 'IT' } as DepartmentViewModel,
         },
         {
           id: 2,
           firstName: 'Jane',
           lastName: 'Smith',
+          emailAddress: 'test2@test.com',
           dateOfBirth: new Date('1992-02-15'),
           department: { id: 2, name: 'HR' } as DepartmentViewModel,
         },
@@ -92,6 +95,7 @@ describe('PersonService', () => {
         id: 0,
         firstName: 'John',
         lastName: 'Doe',
+        emailAddress: 'test@test.com',
         dateOfBirth: new Date('1990-01-01'),
         department: { id: 1, name: 'IT' } as DepartmentViewModel,
       };
@@ -114,6 +118,7 @@ describe('PersonService', () => {
         id: 1,
         firstName: 'John',
         lastName: 'Doe Updated',
+        emailAddress: 'test@test.com',
         dateOfBirth: new Date('1990-01-01'),
         department: { id: 1, name: 'IT' } as DepartmentViewModel,
       };

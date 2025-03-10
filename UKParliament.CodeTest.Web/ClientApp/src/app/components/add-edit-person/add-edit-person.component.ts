@@ -1,5 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { DepartmentViewModel } from 'src/app/models/department-view-model';
@@ -15,7 +20,7 @@ import { AddEditPersonModule } from './add-edit-person.module';
   styleUrls: ['./add-edit-person.component.scss'],
 })
 export abstract class AddEditPersonComponent implements OnInit, OnDestroy {
-  personForm: FormGroup;
+  personForm: FormGroup<PersonForm>;
   departments: DepartmentViewModel[] = [];
   personId: number = 0;
   destroy$: Subject<void> = new Subject<void>();
@@ -23,17 +28,20 @@ export abstract class AddEditPersonComponent implements OnInit, OnDestroy {
   title: string = '';
 
   constructor(
-    private readonly fb: FormBuilder,
     protected readonly router: Router,
     protected readonly activatedRoute: ActivatedRoute,
     private readonly departmentService: DepartmentService,
     protected readonly personService: PersonService
   ) {
-    this.personForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.maxLength(50)]],
-      lastName: ['', [Validators.required, Validators.maxLength(50)]],
-      dateOfBirth: ['', Validators.required],
-      department: [null, Validators.required],
+    this.personForm = new FormGroup<PersonForm>({
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      emailAddress: new FormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
+      dateOfBirth: new FormControl(null, Validators.required),
+      department: new FormControl(null, Validators.required),
     });
   }
 
@@ -50,4 +58,12 @@ export abstract class AddEditPersonComponent implements OnInit, OnDestroy {
   }
 
   abstract onSubmit(): void;
+}
+
+interface PersonForm {
+  firstName: FormControl<string | null>;
+  lastName: FormControl<string | null>;
+  emailAddress: FormControl<string | null>;
+  dateOfBirth: FormControl<Date | null>;
+  department: FormControl<number | null>;
 }

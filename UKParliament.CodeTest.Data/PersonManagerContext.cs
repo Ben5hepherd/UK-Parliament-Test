@@ -31,9 +31,9 @@ public class PersonManagerContext : DbContext
             new Department { Id = 4, Name = "HR" });
 
         modelBuilder.Entity<Person>().HasData(
-            new Person { Id = 1, FirstName = "Lewis", LastName = "Hamilton", DateOfBirth = new DateTime(1985, 1, 7), DepartmentId = 1 },
-            new Person { Id = 2, FirstName = "George", LastName = "Russell", DateOfBirth = new DateTime(1998, 2, 15), DepartmentId = 3 },
-            new Person { Id = 3, FirstName = "Lando", LastName = "Norris", DateOfBirth = new DateTime(1999, 11, 13), DepartmentId = 4 });
+            new Person { Id = 1, FirstName = "Lewis", LastName = "Hamilton", DateOfBirth = new DateTime(1985, 1, 7), DepartmentId = 1, EmailAddress = "lewis@hamilton.com" },
+            new Person { Id = 2, FirstName = "George", LastName = "Russell", DateOfBirth = new DateTime(1998, 2, 15), DepartmentId = 3, EmailAddress = "george@russell.com" },
+            new Person { Id = 3, FirstName = "Lando", LastName = "Norris", DateOfBirth = new DateTime(1999, 11, 13), DepartmentId = 4, EmailAddress = "lando@norris.com" });
     }
 
     public DbSet<Person> People { get; set; }

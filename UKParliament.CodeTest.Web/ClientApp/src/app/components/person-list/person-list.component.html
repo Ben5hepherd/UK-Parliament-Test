@@ -18,6 +18,7 @@
       <tr>
         <th scope="col" id="firstNameHeader">First Name</th>
         <th scope="col" id="lastNameHeader">Last Name</th>
+        <th scope="col" id="emailAddressHeader">Email Address</th>
         <th scope="col" id="dobHeader">Date of Birth</th>
         <th scope="col" id="departmentHeader">Department</th>
         <th scope="col">Edit</th>
@@ -28,6 +29,7 @@
       <tr tabindex="0">
         <td>{{ person.firstName }}</td>
         <td>{{ person.lastName }}</td>
+        <td>{{ person.emailAddress }}</td>
         <td>{{ person.dateOfBirth | date }}</td>
         <td>{{ person.department.name }}</td>
         <td>

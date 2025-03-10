@@ -12,7 +12,7 @@ public class Repository<T>(PersonManagerContext dbContext) : IRepository<T> wher
 
     public async Task<List<T>> GetAll()
     {
-        return await dbContext.Set<T>().ToListAsync();
+        return await dbContext.Set<T>().AsNoTracking().ToListAsync();
     }
 
     public async Task<int> Add(T entity)
@@ -24,7 +24,7 @@ public class Repository<T>(PersonManagerContext dbContext) : IRepository<T> wher
 
     public async Task<bool> DoesEntityExist(int id)
     {
-        return await dbContext.Set<T>().AnyAsync(e => e.Id == id);
+        return await dbContext.Set<T>().AsNoTracking().AnyAsync(e => e.Id == id);
     }
 
     public async Task Update(T entity)

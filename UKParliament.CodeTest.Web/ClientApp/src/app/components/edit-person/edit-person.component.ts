@@ -28,6 +28,7 @@ export class EditPersonComponent extends AddEditPersonComponent {
             firstName: person.firstName,
             lastName: person.lastName,
             dateOfBirth: new Date(person.dateOfBirth),
+            emailAddress: person.emailAddress,
             department: person.department.id,
           });
         });
@@ -43,11 +44,12 @@ export class EditPersonComponent extends AddEditPersonComponent {
 
     const updatedPerson: PersonViewModel = {
       id: this.personId,
-      firstName: this.personForm.controls.firstName.value,
-      lastName: this.personForm.controls.lastName.value,
-      dateOfBirth: this.personForm.controls.dateOfBirth.value,
+      firstName: this.personForm.controls.firstName.value!,
+      lastName: this.personForm.controls.lastName.value!,
+      dateOfBirth: this.personForm.controls.dateOfBirth.value!,
+      emailAddress: this.personForm.controls.emailAddress.value!,
       department: {
-        id: this.personForm.controls.department.value,
+        id: this.personForm.controls.department.value!,
         name: '',
       },
     };

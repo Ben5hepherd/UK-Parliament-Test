@@ -23,11 +23,12 @@ export class AddPersonComponent extends AddEditPersonComponent {
 
     const newPerson: PersonViewModel = {
       id: 0,
-      firstName: this.personForm.controls.firstName.value,
-      lastName: this.personForm.controls.lastName.value,
-      dateOfBirth: this.personForm.controls.dateOfBirth.value,
+      firstName: this.personForm.controls.firstName.value!,
+      lastName: this.personForm.controls.lastName.value!,
+      emailAddress: this.personForm.controls.emailAddress.value!,
+      dateOfBirth: this.personForm.controls.dateOfBirth.value!,
       department: {
-        id: this.personForm.controls.department.value,
+        id: this.personForm.controls.department.value!,
         name: '',
       },
     };
