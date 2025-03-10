@@ -1,13 +1,12 @@
 ﻿using UKParliament.CodeTest.Data.Entities;
 using UKParliament.CodeTest.Data.Repository;
 
-namespace UKParliament.CodeTest.Services
+namespace UKParliament.CodeTest.Services;
+
+public class DepartmentService(IRepository repository) : IDepartmentService
 {
-    public class DepartmentService(IRepository repository) : IDepartmentService
+    public async Task<List<Department>> GetAllDepartments()
     {
-        public async Task<List<Department>> GetAllDepartments()
-        {
-            return await repository.GetAll<Department>();
-        }
+        return await repository.GetAll<Department>();
     }
 }

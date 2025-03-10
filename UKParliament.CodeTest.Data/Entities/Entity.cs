@@ -1,7 +1,6 @@
-﻿namespace UKParliament.CodeTest.Data.Entities
+﻿namespace UKParliament.CodeTest.Data.Entities;
+
+public class Entity
 {
-    public class Entity
-    {
-        public int Id { get; set; }
-    }
+    public int Id { get; set; }
 }

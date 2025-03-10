@@ -1,9 +1,8 @@
 ﻿using UKParliament.CodeTest.Data.Entities;
 
-namespace UKParliament.CodeTest.Services
+namespace UKParliament.CodeTest.Services;
+
+public interface IDepartmentService
 {
-    public interface IDepartmentService
-    {
-        Task<List<Department>> GetAllDepartments();
-    }
+    Task<List<Department>> GetAllDepartments();
 }
