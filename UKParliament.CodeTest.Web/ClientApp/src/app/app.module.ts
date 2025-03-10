@@ -8,7 +8,6 @@ import {
 } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { PersonListComponent } from './components/person-list/person-list.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
@@ -20,7 +19,7 @@ import { MessageService } from 'primeng/api';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
   imports: [
     ToastModule,
@@ -30,7 +29,6 @@ import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
       { path: '', component: PersonListComponent, pathMatch: 'full' },
       { path: 'add', component: AddPersonComponent, pathMatch: 'full' },
       { path: 'edit/:id', component: EditPersonComponent, pathMatch: 'full' },
-      { path: 'home', component: HomeComponent, pathMatch: 'full' },
     ]),
   ],
   providers: [
