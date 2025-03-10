@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-between align-items-center mb-2">
+  <h2>All Persons</h2>
+  <p-button
+    (click)="addPerson()"
+    label="Add Person"
+    severity="contrast"
+    [attr.aria-label]="'Add new person'"
+  ></p-button>
+</div>
+
+<div class="card">
+  <p-table
+    [value]="persons"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    aria-label="Employee List"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th scope="col" id="firstNameHeader">First Name</th>
+        <th scope="col" id="lastNameHeader">Last Name</th>
+        <th scope="col" id="emailAddressHeader">Email Address</th>
+        <th scope="col" id="dobHeader">Date of Birth</th>
+        <th scope="col" id="departmentHeader">Department</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-person>
+      <tr tabindex="0">
+        <td>{{ person.firstName }}</td>
+        <td>{{ person.lastName }}</td>
+        <td>{{ person.emailAddress }}</td>
+        <td>{{ person.dateOfBirth | date }}</td>
+        <td>{{ person.department.name }}</td>
+        <td>
+          <p-button
+            (click)="editPerson(person.id)"
+            label="Edit"
+            severity="contrast"
+            [attr.aria-label]="
+              'Edit ' + person.firstName + ' ' + person.lastName
+            "
+          ></p-button>
+        </td>
+        <td>
+          <p-button
+            (click)="deletePerson(person.id)"
+            label="Delete"
+            severity="secondary"
+            [attr.aria-label]="
+              'Delete ' + person.firstName + ' ' + person.lastName
+            "
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
