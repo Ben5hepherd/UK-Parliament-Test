@@ -9,7 +9,6 @@ import { AddEditPersonModule } from '../add-edit-person/add-edit-person.module';
   standalone: true,
   imports: [AddEditPersonModule],
   templateUrl: '../add-edit-person/add-edit-person.component.html',
-  styleUrl: '../add-edit-person/add-edit-person.component.scss',
 })
 export class AddPersonComponent extends AddEditPersonComponent {
   title: string = 'Add New Person';

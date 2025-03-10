@@ -17,7 +17,6 @@ import { AddEditPersonModule } from './add-edit-person.module';
   standalone: true,
   imports: [AddEditPersonModule],
   templateUrl: './add-edit-person.component.html',
-  styleUrls: ['./add-edit-person.component.scss'],
 })
 export abstract class AddEditPersonComponent implements OnInit, OnDestroy {
   personForm: FormGroup<PersonForm>;
